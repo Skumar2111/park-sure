@@ -6,10 +6,7 @@ import com.example.park_sure.service.UserRegistrationApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserRegistrationController {
@@ -29,6 +26,19 @@ public class UserRegistrationController {
     public UserRegistrationDTO getUser(String user_id)
     {
         return userRegistrationApplicationService.getUserDetails(user_id);
+    }
+
+
+    @DeleteMapping(value = "/removeUser", params = "user_id")
+    public String removeUser(String user_id)
+    {
+        try {
+            userRegistrationApplicationService.removeUser(user_id);
+        }catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        return "SUCCESS";
     }
 
 

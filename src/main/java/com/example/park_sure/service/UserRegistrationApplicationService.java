@@ -4,8 +4,6 @@ import com.example.park_sure.dto.UserRegistrationDTO;
 import com.example.park_sure.dto.user_registration;
 import com.example.park_sure.persistance.UserRegistrationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
@@ -53,15 +51,22 @@ public class UserRegistrationApplicationService {
         return userRegistrationDTO;
     }
 
+
+    public void removeUser(String user_id)
+    {
+        userRegistrationDAO.remove(user_id);
+    }
+
     private UserRegistrationDTO mapUserRegistrationAPIResponse(user_registration userRegistration, UserRegistrationDTO userRegistrationDTO) {
 
-        userRegistrationDTO.setUser_id(userRegistration.getUser_id());
-        userRegistrationDTO.setUser_name(userRegistration.getUser_name());
-        userRegistrationDTO.setEmail(userRegistration.getEmail());
-        userRegistrationDTO.setMobile_number(userRegistration.getMobile_number());
-        userRegistrationDTO.setRegistered_on(userRegistration.getRegistered_on());
-        userRegistrationDTO.setVerified(userRegistration.isVerified());
-
+        if(userRegistration != null) {
+            userRegistrationDTO.setUser_id(userRegistration.getUser_id());
+            userRegistrationDTO.setUser_name(userRegistration.getUser_name());
+            userRegistrationDTO.setEmail(userRegistration.getEmail());
+            userRegistrationDTO.setMobile_number(userRegistration.getMobile_number());
+            userRegistrationDTO.setRegistered_on(userRegistration.getRegistered_on());
+            userRegistrationDTO.setVerified(userRegistration.isVerified());
+        }
         return userRegistrationDTO;
 
     }
