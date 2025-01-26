@@ -5,6 +5,8 @@ import com.example.park_sure.dto.user_registration;
 import com.example.park_sure.persistance.UserRegistrationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -52,9 +54,24 @@ public class UserRegistrationApplicationService {
     }
 
 
-    public void removeUser(String user_id)
+    public List<user_registration> filter(String user_name)
     {
-        userRegistrationDAO.remove(user_id);
+        List<user_registration> user_registrations = new ArrayList<>();
+        user_registrations = userRegistrationDAO.filter(user_name);
+
+        return  user_registrations;
+    }
+
+
+    public user_registration updateUser(user_registration userRegistration)
+    {
+       return userRegistrationDAO.updateUser(userRegistration);
+    }
+
+
+    public void deleteUser(String user_id)
+    {
+        userRegistrationDAO.deleteUser(user_id);
     }
 
     private UserRegistrationDTO mapUserRegistrationAPIResponse(user_registration userRegistration, UserRegistrationDTO userRegistrationDTO) {
