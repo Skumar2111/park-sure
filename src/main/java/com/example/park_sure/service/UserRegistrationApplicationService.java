@@ -4,6 +4,8 @@ import com.example.park_sure.dto.UserRegistrationDTO;
 import com.example.park_sure.dto.user_registration;
 import com.example.park_sure.persistance.UserRegistrationDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,9 @@ public class UserRegistrationApplicationService {
 
     @Autowired
     UserRegistrationDAO userRegistrationDAO;
+
+    @Autowired
+    MongoDatabaseFactory mongoDatabaseFactory;
 
     public UserRegistrationDTO registerUser(UserRegistrationDTO userRegistrationDTO)
     {
